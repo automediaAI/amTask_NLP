@@ -11,12 +11,9 @@ on:
 
 jobs:
   build:
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Cleanup Runner workspace
-        run: Get-ChildItem "${{ github.workspace }}" -Recurse | Remove-Item -Force -Recurse
-        shell: powershell
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
@@ -25,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run the overall task
         env:
