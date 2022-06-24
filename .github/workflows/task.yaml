@@ -11,17 +11,17 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, windows, x64, nitin]
+    runs-on: [ubuntu-latest]
 
     steps:
       - name: Cleanup Runner workspace
         run: Get-ChildItem "${{ github.workspace }}" -Recurse | Remove-Item -Force -Recurse
         shell: powershell
       - uses: actions/checkout@v2
-      # - name: Set up Python 3.8
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: 3.8
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
