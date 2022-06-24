@@ -14,6 +14,9 @@ jobs:
     runs-on: [self-hosted, windows, x64, nitin]
 
     steps:
+      - name: Cleanup Runner workspace
+        run: Get-ChildItem "${{ github.workspace }}" -Recurse | Remove-Item -Force -Recurse
+        shell: powershell
       - uses: actions/checkout@v2
       # - name: Set up Python 3.8
       #   uses: actions/setup-python@v4

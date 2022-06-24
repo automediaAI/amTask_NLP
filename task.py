@@ -10,7 +10,7 @@
 ## Declarations 
 import os
 import ast #to covert string to list 
-from airtable import Airtable
+from pyairtable import Table
 import json
 from amService_NLP import ner_caller
 
@@ -20,7 +20,8 @@ table_name_news = os.environ.get("PRIVATE_TABLE_NAME_NEWSPAYLOAD") #What to pull
 # table_producer = os.environ.get("PRIVATE_TABLE_NAME_PRODUCER")
 api_key_airtable = os.environ.get("PRIVATE_API_KEY_AIRTABLE")
 # airtable_producer = Airtable(base_key, table_producer, api_key_airtable)
-airtable_payload_news = Airtable(base_key, table_name_news, api_key_airtable)
+# airtable_payload_news = Airtable(base_key, table_name_news, api_key_airtable)
+airtable_payload_news = Table(api_key_airtable, base_key, table_name_news)
 
 ### DATA UPLOAD FUNCTIONS
 #Uploads single json, or list to data_output of record ID as given
@@ -37,7 +38,7 @@ def uploadData(inputDictList, recToUpdate):
 
 #Goes through all records and updates ones that are in the master dict
 def updateLoop():
-	allRecords = airtable_payload_news.get_all()
+	allRecords = airtable_payload_news.all()
 	for i in allRecords:
 		try: #In case have a prod payload or anything wrong 
 			if "Prod_Ready" in i["fields"]: #Only working on prod ready ie checkboxed
