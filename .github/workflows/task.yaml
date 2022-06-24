@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, windows, x64, nitin]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,7 +27,6 @@ jobs:
       - name: Run the overall task
         env:
             PRIVATE_BASE_KEY: ${{ secrets.PRIVATE_BASE_KEY }}
-            PRIVATE_TABLE_NAME_PRODUCER: ${{ secrets.PRIVATE_TABLE_NAME_PRODUCER }}
             PRIVATE_API_KEY_AIRTABLE: ${{ secrets.PRIVATE_API_KEY_AIRTABLE }}
             PRIVATE_TABLE_NAME_NEWSPAYLOAD: ${{ secrets.PRIVATE_TABLE_NAME_NEWSPAYLOAD }}
         run: |
