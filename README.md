@@ -1,2 +1,5 @@
 # amTask_NLP
-NLP tasks such as NER extraction and Summarization
+Main service that runs text based ML tasks (NER, Summarizer) and adds value to text 
+<ul>
+    <li></li>
+</ul>
