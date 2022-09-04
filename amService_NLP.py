@@ -15,13 +15,6 @@
 
 ##############
 
-# Work Pending 
-## Create a similary function that tests similarity of headlines and returns T/F with basic threshold 
-## Take optional threshold value too  
-
-# Known Issues 
-## NER - For PERSON only works with title case 'Elon Musl' not  'ELon Musk' or 'elon musk' - seems a spaCy limitation or of the model, as works for GPE --> try LG model 
-
 # Extra Work 
 ## NER - Get confidence for NER (?) possible? 
 ## NER - See if any measure of weight or importance of entity ?
@@ -73,9 +66,7 @@ def nlp_ner(txt_in):
     ## Loop to add entity details to each word
     word_list = [] #Empty list where we will append text and ent
     for i in doc:
-        # print ("Token word:", i.text, "| has vector:", i.has_vector, " norm:", i.vector_norm) # Testing to solve the person title case issue 
         if i.ent_iob == 3 and i.ent_type_ not in ner_ban_list: #Only interested in NER tokens AND not in Ban List 
-            # print ("yes entiti")
             word_list.append({
                 "word": i.text,
                 "entity_exist": True,
@@ -100,7 +91,7 @@ def nlp_ner(txt_in):
         "NER_list":ents_list_str, # List of entities in Str format 
         "NER_list_withTitle": ents_list_withTitle,
         "text_original":txt_in, # text as is 
-        "text_NERannotated": word_list #text with entity or not  KILLING FOR NOW TILL WE FIND A USE CASE
+        "text_NERannotated": word_list #text with entity or not 
     })
 
 
