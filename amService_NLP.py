@@ -1,6 +1,8 @@
 import spacy
+spacy.prefer_gpu()
 
-nlp = spacy.load("en_core_web_md")
+# nlp = spacy.load("en_core_web_md")
+nlp = spacy.load("en_core_web_trf")
 
 ner_ban_list = [
     "PERCENT",
@@ -11,6 +13,10 @@ ner_ban_list = [
     "DATE",
     "TIME"
 ]
+
+# https://spacy.io/api/pipeline-functions#merge_entities
+# https://stackoverflow.com/a/53534611/681292
+# nlp.add_pipe("merge_entities")
 
 ###### Call spaCy and get Named Entities as keywords ######
 ###### This ignores some NERs which are specified    ######
